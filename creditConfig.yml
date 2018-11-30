@@ -1,0 +1,14 @@
+# 积分配置文件
+
+base:
+    # 基础积分
+    baseCredit: 100
+
+    # 积分发放年限
+    releaseYears: 3
+
+    # 积分最大增长系数
+    maxIncreaseCoefficient: 1.1
+
+    # 积分最小增长系数
+    mixIncreaseCoefficient: 0.99

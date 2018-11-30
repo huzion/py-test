@@ -1,7 +1,25 @@
 # -*- coding: UTF-8 -*-
 # credit test
 
-import random
+import random,copy,yaml,os,pprint
+from prettytable import PrettyTable
+
+#获取文件全路径
+path = os.path.join(os.path.dirname(__file__),'creditConfig.yml').replace("\\","/")
+
+creditConfig = open(path, 'rb')
+_config = yaml.load(creditConfig)
+
+print(_config['base'])
+
+_dict = copy.deepcopy(_config)
+_dict['base']['baseCredit'] = 101
+
+_dict['operation'] = {}
+_dict['operation']['lastMaxCredit'] = 0
+_dict['operation']['lastMixCredit'] = 0
+_dict['operation']['arrCreditPerWeeks'] = []
+
 
 # 基础积分
 baseCredit = 100
@@ -27,8 +45,8 @@ lastMixCredit = 0
 # 每周积分增长系数数组
 arrCreditPerWeeks = []
 
-
 # 计算最大积分
+
 '''
 def countMaxCredit(baseCredit, releaseYears, maxIncreaseCoefficient, mixIncreaseCoefficient, releaseWeeks):
     _baseCredit = baseCredit
@@ -74,5 +92,19 @@ for i in range(releaseWeeks):
 # 每周积分
 print(arrEveryWeekCredit)
 
+# 创建表格
+def creditTable():
+    creditTable = PrettyTable(["项","值"])
+    creditTable.align["项"] = "l"
+    creditTable.align["值"] = "r"
+    creditTable.add_row(["基础积分", baseCredit])
+    creditTable.add_row(["积分发放年限", releaseYears])
+    creditTable.add_row(["积分发放周数", releaseWeeks])
+    creditTable.add_row(["积分最大增长系数", maxIncreaseCoefficient])
+    creditTable.add_row(["积分最小增长系数", mixIncreaseCoefficient])
+    creditTable.add_row(["最后一周发放积分的最大值", lastMaxCredit])
+    creditTable.add_row(["总发放积分", allCredit])
+
 # 总发放积分
 print(allCredit)
+print(creditTable)
