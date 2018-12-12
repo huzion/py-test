@@ -20,6 +20,10 @@ _dict['operation']['lastMaxCredit'] = 0
 _dict['operation']['lastMixCredit'] = 0
 _dict['operation']['arrCreditPerWeeks'] = []
 
+a = _dict.values()
+
+print('a:')
+print(a)
 
 # 基础积分
 baseCredit = 100
@@ -105,6 +109,9 @@ def creditTable():
     creditTable.add_row(["最后一周发放积分的最大值", lastMaxCredit])
     creditTable.add_row(["总发放积分", allCredit])
 
+    return creditTable,creditTable._rows
+
 # 总发放积分
+print("----------")
 print(allCredit)
 print(creditTable)
