@@ -7,13 +7,13 @@ txt = open('./test.html').read()
 html = BeautifulSoup(txt, 'html.parser')
 content = html.get_text()
 
-wordsls = jieba.lcut(content)ß
+wordsls = jieba.lcut(content)
 wcdict = {}
 for word in wordsls:
-    if len(word) == 1:ß
+    if len(word) == 1:
         continue
     else:
-        wcdict[word] = wcdict.get(word,0)+1ß
+        wcdict[word] = wcdict.get(word,0)+1
 
 wcls = list(wcdict.items())
 wcls.sort(key = lambda x:x[1], reverse = True)
